@@ -1,0 +1,90 @@
+﻿
+@model Textile.DAL.Models.PaiementModel
+<form id="ParamForm">
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.client)
+    <div class="container-fluid">
+        <br />
+        <div class="row">
+            <div class="col-md-6  col-sm-6 col-xs-6 col-lg-6">
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-landmark text-gray-400"></i></span>
+                    </div>
+                    @Html.TextBoxFor(model => model.Montant, new { @class = "form-control currency", @required = true })
+                </div>
+            </div>
+            <div class="col-md-6  col-sm-6 col-xs-6 col-lg-6">
+
+                <div class="input-group">
+                    @Html.DropDownListFor(model => model.TypePaiement, Textile.Web.Controllers.AdministrationController.GetPaymentTypeList(), new { @class = "form-control border-left-info ItemSelect", @style = "width:100%" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="Adresse">Date de paiement:</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-calendar  text-gray-400"></i></span>
+                        </div>
+                        @{
+                            string datePaiement = string.Empty;
+                            if (Model.DatePaiement != null)
+                            {
+                                datePaiement = Model.DatePaiement.Value.ToString("yyyy-MM-dd");
+                            }
+                        }
+                        @Html.TextBox("DatePaiement", datePaiement, new { @class = "form-control", @type = "date", @required = true })
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="Adresse">Date d'échéance:</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-calendar text-gray-400"></i></span>
+                        </div>
+                        @{
+                            string dateEcheance = string.Empty;
+                            if (Model.DateEcheance != null)
+                            {
+                                dateEcheance = Model.DateEcheance.Value.ToString("yyyy-MM-dd");
+                            }
+                        }
+                        @Html.TextBox("DateEcheance", dateEcheance, new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-sm btn-success" onclick="AddOrUpdatePayment()"><i class="ace-icon fa fa-check"></i> Valider</button>
+        <button type="button" class="btn btn-sm" id="AnnulerP" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Annuler</button>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function () {
+        $(".ItemSelect").select2({
+            theme: "classic"
+        });
+    });
+</script>
+<script>
+    // Jquery Dependency
+    $(document).ready(function () {
+        $(".currency").on({
+            keyup: function () {
+                formatCurrency($(this));
+            },
+            blur: function () {
+                formatCurrency($(this), "blur");
+            }
+        });
+    });
+</script>

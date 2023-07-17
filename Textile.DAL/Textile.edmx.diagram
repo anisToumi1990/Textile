@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="775bc3ad43e04bf6a63b995c391a77a3" Name="Diagram1" ZoomLevel="96">
+        <EntityTypeShape EntityType="TextileModel.Client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TextileModel.Fournisseur" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TextileModel.Roles" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="TextileModel.UserRolesMapping" Width="1.5" PointX="3" PointY="4.875" />
+        <AssociationConnector Association="TextileModel.FK_UserRolesMapping_Roles" />
+        <EntityTypeShape EntityType="TextileModel.References" Width="1.5" PointX="5.375" PointY="1" />
+        <EntityTypeShape EntityType="TextileModel.Articles" Width="1.5" PointX="7.625" PointY="4.875" />
+        <AssociationConnector Association="TextileModel.FK_ReferenceDetails_References" />
+        <EntityTypeShape EntityType="TextileModel.ArticleDetails" Width="1.5" PointX="9.875" PointY="4.625" />
+        <EntityTypeShape EntityType="TextileModel.StockOuvert" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="TextileModel.StockOuvertDetail" Width="1.5" PointX="5.375" PointY="8.75" />
+        <AssociationConnector Association="TextileModel.FK_ArticleDetails_ReferenceDetails" />
+        <EntityTypeShape EntityType="TextileModel.Ventes" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TextileModel.VenteDetails" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="TextileModel.Societe" Width="1.5" PointX="9.375" PointY="8.75" />
+        <EntityTypeShape EntityType="TextileModel.Paiement" Width="1.5" PointX="3" PointY="10.125" />
+        <AssociationConnector Association="TextileModel.FK_Paiement_Client" />
+        <EntityTypeShape EntityType="TextileModel.StockMouvement" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TextileModel.Users" Width="1.5" PointX="0.625" PointY="8.375" />
+        <AssociationConnector Association="TextileModel.FK_UserRolesMapping_UserRolesMapping" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

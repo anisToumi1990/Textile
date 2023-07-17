@@ -1,0 +1,111 @@
+﻿<script type="text/javascript">
+    $("#statisticsHref").addClass("active");
+</script>
+<link type="text/css" rel="stylesheet" href="~/css/Statistics.css" />
+<input type="hidden" id="month" value="@ViewBag.Mois" />
+<input type="hidden" id="venteYear" value="@ViewBag.VenteAnnee" />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content">
+            <div class="row">
+
+                <div class="col-xl-4 col-lg-4">
+                    @Html.DropDownList("AnneeSelector", Textile.Web.Controllers.HomeController.GetYearsList(), new { @class = "form-control ItemSelect" })
+                </div>
+
+
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xl-4 col-lg-4">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span style="float:right !important" class="label label-primary pull-right">Annuel</span>
+                            <h5>
+                                VENTE
+                            </h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 style="font-size:2rem" class="no-margins" id="venteAnnee">
+                            </h1>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div>
+                        @Html.DropDownList("MonthSelector", Textile.Web.Controllers.HomeController.GetMonthList(), new { @class = "form-control ItemSelect" })
+                    </div>
+                    <br />
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span onclick="GetDetailPerMonth()" style="float:right !important; cursor:help" class="label label-info pull-right">Mensuel</span>
+                            <h5>
+                                VENTE
+                            </h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 style="font-size:2rem" class="no-margins">
+                                <label>@ViewBag.Mois</label>
+
+                            </h1>
+                            <div class="stat-percent font-bold text-navy">
+                                <label id="MoisPourcent">@string.Format("{0:0.000}", Convert.ToDouble((ViewBag.MoisPourcent))) %</label>
+                                <i class="fas fa-level-up-alt"></i>
+                            </div>
+                            <small>Totale</small>
+                            <hr />
+                            <a href="#" onclick="GetDetailPerMonth()">
+                                <div class="stat-percent font-bold text-navy">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <small>Afficher Detail</small>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Area Chart -->
+              
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Clients par Mois</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                    <canvas id="CharClientParMois" style="display: block; height: 320px; width: 528px;" width="660" height="400" class="chartjs-render-monitor"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+               
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<hr />
+<div class="col-xl-12 col-lg-12">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Ventes Par Mois</h6>
+
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="chart-area">
+                <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                <canvas id="CharVentesParMois" style="display: block; height: 320px; width: 528px;" width="660" height="400" class="chartjs-render-monitor"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Javascript/Home/Statistics.js"></script>

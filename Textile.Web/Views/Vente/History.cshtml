@@ -1,0 +1,52 @@
+﻿
+<script type="text/javascript">
+    $("#collapseVente").addClass("show");
+    $("#historyHref").addClass("active");
+    $("#_vente").addClass("active");
+</script>
+
+<style type="text/css">
+    input[type=text], select {
+        text-align: center;
+        text-align-last: center;
+    }
+</style>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h2 class="h3 mb-0 text-gray-800">
+            Historiques
+        </h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered dt-responsive nowrap"
+                   id="historyCustomerGrid" style="width:100%">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">
+                            Client
+                        </th>
+                        <th style="text-align:center;">
+                            Reference
+                        </th>
+                        <th style="text-align:center;">
+                            Quantité
+                        </th>
+                    </tr>
+                </thead>
+                <tbody align="center"></tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        LoadhistoryCustomerData();
+    });
+</script>
+<script src="~/Javascript/Vente/History-JS.js"></script>
+
+

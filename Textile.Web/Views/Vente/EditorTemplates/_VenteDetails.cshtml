@@ -1,0 +1,133 @@
+﻿
+@model Textile.DAL.Models.VenteDetailsModel
+    <form id="ParamForm">
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.DateCreation)
+        @Html.HiddenFor(model => model.Mode)
+        @Html.HiddenFor(model => model.vente)
+     
+        @{string vente = Model.vente.ToString();}
+        <div class="container-fluid">
+            <br />
+            <div class="row">
+                <div class="col-md-12  col-sm-12 col-xs-12 col-lg-12">
+                    <b><label for="UserName">Reference:</label></b>
+                    <div class="input-group">
+                        
+                            @Html.DropDownListFor(model => model.reference, Textile.Web.Controllers.VenteController.GetReferencesAvailableListFromSO(Model.vente.ToString(), Model.id), new { @class = "form-control border-left-info ItemSelect", @style = "width:100%" })
+                        
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                    <input type="text" style="border: 2px solid red; border-radius: 4px;" class="form-control" id="availableQteText" disabled />
+                    <input value="0" type="hidden" style="border: 2px solid red; border-radius: 4px;" class="form-control" id="availableQte" disabled />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4  col-sm-4 col-xs-4 col-lg-4">
+                    <div class="form-group">
+                        <b><label class="small mb-1" for="Qte">Quantité  en ms:</label></b>
+                        @Html.TextBoxFor(model => model.Qte, new { @class = "form-control qte",  @required = true, @type = "text", onchange = "Verify()", @onkeypress = "return isNumberKey(this, event);" })
+              
+                    </div>
+                   
+                </div>
+                <div class="col-md-8  col-sm-8 col-xs-8 col-lg-8">
+                    <div class="form-group">
+                        <b><label class="small mb-1" for="PrixUnitaire">Prix Unitaire (TND):</label></b>
+                        @Html.TextBoxFor(model => model.PrixUnitaire, new { @class = "form-control currency", @placeholder = "Prix Unitaire en dinard ...", @required = true, @type = "text" })
+                    </div>
+                    
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12  col-sm-12 col-xs-12 col-lg-12">
+                    <div class="form-group">
+                        <b><label class="small mb-1" for="Description">Désignation:</label></b>
+                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control"})
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-sm btn-success" onclick="AddOrUpdateVenteDetail()"><i class="ace-icon fa fa-check"></i> Valider</button>
+            <button type="button" class="btn btn-sm" id="AnnulerP" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Annuler</button>
+        </div>
+    </form>
+<script>
+    $(document).ready(function () {
+        
+        $(".ItemSelect").select2({
+            theme: "classic"
+        });
+        var reference = $("#reference").val();
+        if (reference != null) {
+            GetAvailableQte(reference);
+        }
+        $(".ItemSelect").change(function () {
+            if ($(this).val() != 0) {
+                var id = $(this).val();
+                GetAvailableQte(id);
+            }
+        });
+    });
+    function GetAvailableQte(id) {
+        $.ajax({
+            type: "GET",
+            url: "/Vente/GetAvailableQte",
+            data: { ID: id },
+            beforeSend: function () {
+
+            },
+            success: function (data) {
+                var Mode = $("#Mode").val();
+                if (Mode != null &&
+                    Mode == "Edit") {
+                    
+                    var CurrentQte = Number($("#Qte").val().replace(",","."));
+                    $("#availableQteText").val(data + " + " + CurrentQte + " m(s) disponible(s)");
+                    $("#availableQte").val(Number(data) + Number(CurrentQte));
+                   }
+                else {
+                    $("#availableQteText").val(data + " m(s) disponible(s)");
+                    $("#availableQte").val(Number(data));
+                }
+
+            },
+            complete: function () {
+
+            },
+            failure: function (response) { }
+        });
+    }
+</script>
+
+<script>
+    // Jquery Dependency
+    $(".currency").on({
+        keyup: function () {
+            formatCurrency($(this));
+        },
+        blur: function () {
+            formatCurrency($(this), "blur");
+        }
+    });
+     function Verify() {
+        
+        var qte = $("#Qte").val().replace(",", ".");
+        if (parseFloat($("#availableQte").val()) < parseFloat(qte)) {
+            $("#Qte").css("border-color", "red");
+            toastr.options 
+            toastr.error("Quantité doit être inférieure ou égale à la quantité disponible: " + $("#availableQte").val() + (" m"));
+        }
+        else {
+            $("#Qte").css("border-color", "green");
+        }
+    }
+</script>

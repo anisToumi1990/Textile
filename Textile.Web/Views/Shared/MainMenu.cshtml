@@ -1,0 +1,71 @@
+﻿
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink  fa-spin"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Dark Soft</div>
+    </a>
+    <hr class="sidebar-divider my-0">
+    <li id="HomeHref" class="nav-item">
+        <a class="nav-link" href="/Home/index">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Acceuil</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+    <li id="_vente" class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVente" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-cart-plus"></i>
+
+            <span>Vente</span>
+        </a>
+        <div id="collapseVente" class="collapse" style="z-index:9999999999999" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Vente</h6>
+                <a id="venteHref" class="collapse-item text-xs  text-uppercase mb-1" href="/Vente/Index">Vente</a>
+                <a id="historyHref" class="collapse-item text-xs  text-uppercase mb-1" href="/Vente/History">Historique</a>
+            </div>
+        </div>
+    </li>
+    <li id="_stock" class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-wrench"></i>
+
+            <span>Stock</span>
+        </a>
+        <div id="collapseStock" class="collapse" style="z-index:9999999999999" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Stock</h6>
+                <a id="StockOuvertHref" class="collapse-item text-xs  text-uppercase mb-1" href="/Stock/Index">Stock ouvert</a>
+                <a id="StockFermeHref" class="collapse-item text-xs  text-uppercase mb-1" href="/Stock/References">Stock fermé</a>
+            </div>
+        </div>
+    </li>
+    <hr class="sidebar-divider">
+    <li id="statisticsHref" class="nav-item">
+        <a class="nav-link" href="/Home/statistics">
+            <i class="fas fa-chart-area"></i>
+            <span>Statistique</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li id="_administration" class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministration" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Administration</span>
+        </a>
+        <div id="collapseAdministration" class="collapse" style="z-index:9999999999999" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Administration</h6>
+                <a id="clientHref" class="collapse-item text-xs  text-uppercase mb-1" href="/Administration/Customer">Clients</a>
+                <a id="userHref" class="collapse-item text-xs  text-uppercase mb-1" href="/Administration/Users">Utilisateurs</a>
+            </div>
+        </div>
+    </li>
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+

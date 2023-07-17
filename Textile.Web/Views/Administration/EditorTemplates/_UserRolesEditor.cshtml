@@ -1,0 +1,21 @@
+﻿@model List<Textile.DAL.Models.RolesModel>
+@{
+    int UserID = (int)ViewBag.ID;
+}
+@Html.Hidden("CurrentUserID", UserID)
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-2"> <input type="checkbox" onchange="ChangeUserRole('@item.ID' + ',' + '@UserID')" id="Checkbox_@item.ID" checked="@item.Checked"></div>
+                <div class="col-10"> @item.Role</div>
+            </div>
+        }
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Annuler</button>
+    </div>
+</div>
+

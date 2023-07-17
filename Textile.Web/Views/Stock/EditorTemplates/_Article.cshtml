@@ -1,0 +1,33 @@
+﻿
+@model Textile.DAL.Models.ArticlesModel
+<form id="ParamForm">
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.reference)
+    @Html.HiddenFor(model => model.DateCreation)
+    <div class="container-fluid">
+        <br />
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1 font-italic font-weight-bold" for="CodeArticle">Code:</label>
+                    @Html.TextBoxFor(model => model.CodeArticle, new { @class = "form-control", @placeholder = "Tapez le code de l'article Ex:(1,2,3...)", @required = true })
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1 font-italic font-weight-bold" for="CodeArticle">Couleur:</label>
+                    @Html.TextBoxFor(model => model.Couleur, new { @class = "form-control", @placeholder = "Couleur", @required = true, type = "color" })
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-sm btn-success" onclick="AddOrUpdateArticle()"><i class="ace-icon fa fa-check"></i> Valider</button>
+        <button type="button" class="btn btn-sm" id="AnnulerP" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Annuler</button>
+    </div>
+</form>
+
+
+

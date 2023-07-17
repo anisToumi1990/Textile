@@ -1,0 +1,139 @@
+﻿
+
+<link href="~/css/jquery.multiselect.css" rel="stylesheet" />
+<style type="text/css">
+    .checklist {
+        width: auto !important;
+    }
+
+    .findInList input {
+        width: 99% !important;
+    }
+</style>
+@model Textile.DAL.Models.UsersModel
+<form id="ParamForm">
+    @Html.HiddenFor(model => model.ID)
+    <div class="container-fluid">
+        <br />
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="FirstName"><b>Nom:</b></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        </div>
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = "Nom",@required = true })
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="LastName"><b>Prenom:</b></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        </div>
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = "Prenom", @required = true })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="UserName"><b>Nom utilisateur:</b></label>
+                    <div class="input-group mb-3">
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user-lock"></i></span>
+                        </div>
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Nom utilisateur", @required = true })
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="Password"><b>Mot de passe:</b></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                        </div>
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "Mot de passe", @required = true })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="Email"><b>Adresse email:</b></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                        </div>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Adresse Email", type = "email" , @required = true })
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="form-group">
+                    <label class="small mb-1" for="Phone"><b>Téléphone:</b></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                        </div>
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Numéro Téléphone" , @required = true })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        @foreach (var item in Model.AvailableRoles)
+        {
+            <div class="row">
+                <div class="col-2"> <input type="checkbox" disabled="disabled" onchange="ChangeUserRole('@item.ID,@Model.ID')" id="Checkbox_@item.ID" checked="@item.Checked"></div>
+                <div class="col-10"> @item.Role</div>
+            </div>
+        }
+        <hr />
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="form-group">
+
+                            <div class="btn-group">
+                                <label for="IsActive" class="btn btn-info">
+                                    @Html.CheckBoxFor(model => model.IsActive)
+                                </label>
+                                <label for="IsActive" class="btn btn-info active">
+                                    Actif
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <div id="errorMsg" class="text-sm-center text-danger"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button id="submitBtn" type="submit" class="btn btn-sm btn-success" onclick="AddOrUpdateUser()"><i class="ace-icon fa fa-check"></i> Valider</button>
+        <button type="button" class="btn btn-sm" id="AnnulerP" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Annuler</button>
+    </div>
+</form>
+<script src="~/js/jquery.multiselect.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".multiselect").multiselect();
+    });
+</script>
+

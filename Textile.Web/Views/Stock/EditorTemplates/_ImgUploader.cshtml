@@ -1,0 +1,58 @@
+﻿@model int
+@Html.Hidden("id", Model)
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <input type="file" class="form-control-file" name="UploadFile" id="txtUploadFile">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-sm btn-success" onclick="ValiderImg()"><i class="ace-icon fa fa-check"></i> Valider</button>
+        <button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Annuler</button>
+    </div>
+</div>
+
+<script>
+    function ValiderImg()
+    {
+        
+        var files = $('input[name=UploadFile]')[0].files;
+        var id = $("#id").val();
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                var data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    data.append("file" + x, files[x]);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '/Stock/UploadHomeReport?id=' + id,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (result) {
+                        $("#txtUploadFile").replaceWith($("#txtUploadFile").val('').clone(true));
+                        $('#GenericModel').modal('hide');
+                        toastr.success('Image enregistré avec success', 'Succès', { progressBar: true, showDuration: 100 });
+                        $('#ArticleDetailsGrid').DataTable().ajax.reload();
+                    },
+                    error: function (xhr, status, p3, p4) {
+                        toastr.error('erreur ?', 'Erreur', { progressBar: true, showDuration: 100 });
+                    }
+                });
+            } else {
+                alert("This browser doesn't support HTML5 file uploads!");
+            }
+        }
+
+    }
+    function Dismiss()
+    {
+        $("#txtUploadFile").replaceWith($("#txtUploadFile").val('').clone(true));
+        $('#GenericModel').modal('hide');
+        $('#ProduitsGrid').DataTable().ajax.reload();
+    }
+</script>

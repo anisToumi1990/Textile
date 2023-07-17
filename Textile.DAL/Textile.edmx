@@ -1,0 +1,760 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TextileModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArticleDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="500" />
+          <Property Name="article" Type="int" />
+          <Property Name="Qte" Type="float" />
+          <Property Name="DateCreation" Type="datetime" />
+          <Property Name="DateModification" Type="datetime" />
+          <Property Name="Disponible" Type="bit" />
+          <Property Name="imgURL" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reference" Type="int" />
+          <Property Name="CodeArticle" Type="nvarchar" MaxLength="250" />
+          <Property Name="DateCreation" Type="datetime" />
+          <Property Name="DateModification" Type="datetime" />
+          <Property Name="Couleur" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="250" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="500" />
+          <Property Name="NumeroTelephoe" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodePostal" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="250" />
+          <Property Name="MatriculeFiscal" Type="nvarchar" MaxLength="50" />
+          <Property Name="IBAN" Type="nvarchar" MaxLength="250" />
+          <Property Name="Exonore" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="idFournisseur" />
+          </Key>
+          <Property Name="idFournisseur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="250" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="500" />
+          <Property Name="NumeroTelephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodePostal" Type="nvarchar" MaxLength="50" />
+          <Property Name="IBAN" Type="nvarchar" MaxLength="250" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="MatriculeFiscal" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Paiement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client" Type="int" />
+          <Property Name="Montant" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="TypePaiement" Type="nvarchar" MaxLength="50" />
+          <Property Name="DatePaiement" Type="datetime" Nullable="false" />
+          <Property Name="DateEcheance" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="References">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libellé" Type="nvarchar" MaxLength="250" />
+          <Property Name="DateCreation" Type="datetime" />
+          <Property Name="DateModification" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Societe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomSociete" Type="nvarchar" MaxLength="250" />
+          <Property Name="Adresse" Type="nvarchar(max)" />
+          <Property Name="NumeroTelephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Logo" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StockMouvement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mouvement" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qte" Type="float" />
+          <Property Name="DateCreation" Type="datetime" />
+          <Property Name="Reference" Type="int" />
+          <Property Name="Facture" Type="int" />
+        </EntityType>
+        <EntityType Name="StockOuvert">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reference" Type="int" />
+          <Property Name="Qte" Type="float" />
+        </EntityType>
+        <EntityType Name="StockOuvertDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreation" Type="datetime" />
+          <Property Name="DateModification" Type="datetime" />
+          <Property Name="Qte" Type="float" />
+          <Property Name="reference" Type="int" />
+          <Property Name="article" Type="int" />
+          <Property Name="articledetail" Type="int" />
+          <Property Name="imgURL" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="UserRolesMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VenteDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vente" Type="int" />
+          <Property Name="reference" Type="int" />
+          <Property Name="Qte" Type="float" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateCreation" Type="datetime" />
+          <Property Name="DateModification" Type="datetime" />
+          <Property Name="PrixUnitaire" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Remise" Type="decimal" Precision="18" Scale="3" />
+        </EntityType>
+        <EntityType Name="Ventes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="250" />
+          <Property Name="client" Type="int" />
+          <Property Name="DateCreation" Type="datetime" />
+          <Property Name="TypePaiement" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ArticleDetails_ReferenceDetails">
+          <End Role="Articles" Type="Self.Articles" Multiplicity="0..1" />
+          <End Role="ArticleDetails" Type="Self.ArticleDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleDetails">
+              <PropertyRef Name="article" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paiement_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="Paiement">
+              <PropertyRef Name="client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRolesMapping_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserRolesMapping" Type="Self.UserRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRolesMapping">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRolesMapping_UserRolesMapping">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserRolesMapping" Type="Self.UserRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRolesMapping">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TextileModelStoreContainer">
+          <EntitySet Name="ArticleDetails" EntityType="Self.ArticleDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paiement" EntityType="Self.Paiement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="References" EntityType="Self.References" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Societe" EntityType="Self.Societe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockMouvement" EntityType="Self.StockMouvement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockOuvert" EntityType="Self.StockOuvert" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockOuvertDetail" EntityType="Self.StockOuvertDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRolesMapping" EntityType="Self.UserRolesMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VenteDetails" EntityType="Self.VenteDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventes" EntityType="Self.Ventes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ArticleDetails_ReferenceDetails" Association="Self.FK_ArticleDetails_ReferenceDetails">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="ArticleDetails" EntitySet="ArticleDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paiement_Client" Association="Self.FK_Paiement_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Paiement" EntitySet="Paiement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRolesMapping_Roles" Association="Self.FK_UserRolesMapping_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRolesMapping" EntitySet="UserRolesMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRolesMapping_UserRolesMapping" Association="Self.FK_UserRolesMapping_UserRolesMapping">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRolesMapping" EntitySet="UserRolesMapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TextileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroTelephoe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodePostal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MatriculeFiscal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IBAN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Exonore" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Paiement" Relationship="TextileModel.FK_Paiement_Client" FromRole="Client" ToRole="Paiement" />
+          </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="idFournisseur" />
+          </Key>
+          <Property Name="idFournisseur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodePostal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IBAN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatriculeFiscal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="TextileEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" />
+          <EntitySet Name="Roles" EntityType="TextileModel.Roles" />
+          <EntitySet Name="UserRolesMapping" EntityType="TextileModel.UserRolesMapping" />
+          <AssociationSet Name="FK_UserRolesMapping_Roles" Association="TextileModel.FK_UserRolesMapping_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRolesMapping" EntitySet="UserRolesMapping" />
+          </AssociationSet>
+          <EntitySet Name="References" EntityType="TextileModel.References" />
+          <EntitySet Name="Articles" EntityType="TextileModel.Articles" />
+          <AssociationSet Name="FK_ReferenceDetails_References" Association="TextileModel.FK_ReferenceDetails_References">
+            <End Role="References" EntitySet="References" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <EntitySet Name="ArticleDetails" EntityType="TextileModel.ArticleDetails" />
+          <EntitySet Name="StockOuvert" EntityType="TextileModel.StockOuvert" />
+          <EntitySet Name="StockOuvertDetail" EntityType="TextileModel.StockOuvertDetail" />
+          <AssociationSet Name="FK_ArticleDetails_ReferenceDetails" Association="TextileModel.FK_ArticleDetails_ReferenceDetails">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="ArticleDetails" EntitySet="ArticleDetails" />
+          </AssociationSet>
+          <EntitySet Name="Ventes" EntityType="TextileModel.Ventes" />
+          <EntitySet Name="VenteDetails" EntityType="TextileModel.VenteDetails" />
+          <EntitySet Name="Societe" EntityType="TextileModel.Societe" />
+          <EntitySet Name="Paiement" EntityType="TextileModel.Paiement" />
+          <AssociationSet Name="FK_Paiement_Client" Association="TextileModel.FK_Paiement_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Paiement" EntitySet="Paiement" />
+          </AssociationSet>
+          <EntitySet Name="StockMouvement" EntityType="TextileModel.StockMouvement" />
+          <EntitySet Name="Users" EntityType="TextileModel.Users" />
+          <AssociationSet Name="FK_UserRolesMapping_UserRolesMapping" Association="TextileModel.FK_UserRolesMapping_UserRolesMapping">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRolesMapping" EntitySet="UserRolesMapping" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRolesMapping" Relationship="TextileModel.FK_UserRolesMapping_Roles" FromRole="Roles" ToRole="UserRolesMapping" />
+        </EntityType>
+        <EntityType Name="UserRolesMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="TextileModel.FK_UserRolesMapping_Roles" FromRole="UserRolesMapping" ToRole="Roles" />
+          <NavigationProperty Name="Users" Relationship="TextileModel.FK_UserRolesMapping_UserRolesMapping" FromRole="UserRolesMapping" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_UserRolesMapping_Roles">
+          <End Type="TextileModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="TextileModel.UserRolesMapping" Role="UserRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRolesMapping">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="References">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libellé" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Articles" Relationship="TextileModel.FK_ReferenceDetails_References" FromRole="References" ToRole="Articles" />
+          <Property Name="DateCreation" Type="DateTime" Precision="3" />
+          <Property Name="DateModification" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reference" Type="Int32" />
+          <Property Name="CodeArticle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreation" Type="DateTime" Precision="3" />
+          <Property Name="DateModification" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="References" Relationship="TextileModel.FK_ReferenceDetails_References" FromRole="Articles" ToRole="References" />
+          <NavigationProperty Name="ArticleDetails" Relationship="TextileModel.FK_ArticleDetails_ReferenceDetails" FromRole="Articles" ToRole="ArticleDetails" />
+          <Property Name="Couleur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ReferenceDetails_References">
+          <End Type="TextileModel.References" Role="References" Multiplicity="0..1" />
+          <End Type="TextileModel.Articles" Role="Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="References">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="reference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ArticleDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="article" Type="Int32" />
+          <Property Name="Qte" Type="Double" />
+          <Property Name="DateCreation" Type="DateTime" Precision="3" />
+          <Property Name="DateModification" Type="DateTime" Precision="3" />
+          <Property Name="Disponible" Type="Boolean" />
+          <Property Name="imgURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Articles" Relationship="TextileModel.FK_ArticleDetails_ReferenceDetails" FromRole="ArticleDetails" ToRole="Articles" />
+        </EntityType>
+        <EntityType Name="StockOuvert">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reference" Type="Int32" />
+          <Property Name="Qte" Type="Double" />
+        </EntityType>
+        <EntityType Name="StockOuvertDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreation" Type="DateTime" Precision="3" />
+          <Property Name="DateModification" Type="DateTime" Precision="3" />
+          <Property Name="Qte" Type="Double" />
+          <Property Name="reference" Type="Int32" />
+          <Property Name="article" Type="Int32" />
+          <Property Name="articledetail" Type="Int32" />
+          <Property Name="imgURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ArticleDetails_ReferenceDetails">
+          <End Type="TextileModel.Articles" Role="Articles" Multiplicity="0..1" />
+          <End Type="TextileModel.ArticleDetails" Role="ArticleDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ArticleDetails">
+              <PropertyRef Name="article" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ventes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client" Type="Int32" />
+          <Property Name="DateCreation" Type="DateTime" Precision="3" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TypePaiement" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VenteDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vente" Type="Int32" />
+          <Property Name="reference" Type="Int32" />
+          <Property Name="Qte" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreation" Type="DateTime" Precision="3" />
+          <Property Name="DateModification" Type="DateTime" Precision="3" />
+          <Property Name="PrixUnitaire" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Remise" Type="Decimal" Precision="18" Scale="3" />
+        </EntityType>
+        <EntityType Name="Societe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomSociete" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Paiement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client" Type="Int32" />
+          <Property Name="Montant" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TypePaiement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DatePaiement" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="DateEcheance" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="Client1" Relationship="TextileModel.FK_Paiement_Client" FromRole="Paiement" ToRole="Client" />
+        </EntityType>
+        <Association Name="FK_Paiement_Client">
+          <End Type="TextileModel.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="TextileModel.Paiement" Role="Paiement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="Paiement">
+              <PropertyRef Name="client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StockMouvement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mouvement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qte" Type="Double" />
+          <Property Name="DateCreation" Type="DateTime" Precision="3" />
+          <Property Name="Reference" Type="Int32" />
+          <Property Name="Facture" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRolesMapping" Relationship="TextileModel.FK_UserRolesMapping_UserRolesMapping" FromRole="Users" ToRole="UserRolesMapping" />
+        </EntityType>
+        <Association Name="FK_UserRolesMapping_UserRolesMapping">
+          <End Type="TextileModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="TextileModel.UserRolesMapping" Role="UserRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRolesMapping">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TextileModelStoreContainer" CdmEntityContainer="TextileEntities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="TextileModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="NumeroTelephoe" ColumnName="NumeroTelephoe" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="MatriculeFiscal" ColumnName="MatriculeFiscal" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="Exonore" ColumnName="Exonore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fournisseur">
+            <EntityTypeMapping TypeName="TextileModel.Fournisseur">
+              <MappingFragment StoreEntitySet="Fournisseur">
+                <ScalarProperty Name="idFournisseur" ColumnName="idFournisseur" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="NumeroTelephone" ColumnName="NumeroTelephone" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="MatriculeFiscal" ColumnName="MatriculeFiscal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="TextileModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRolesMapping">
+            <EntityTypeMapping TypeName="TextileModel.UserRolesMapping">
+              <MappingFragment StoreEntitySet="UserRolesMapping">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="References">
+            <EntityTypeMapping TypeName="TextileModel.References">
+              <MappingFragment StoreEntitySet="References">
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="Libellé" ColumnName="Libellé" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="TextileModel.Articles">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Couleur" ColumnName="Couleur" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="CodeArticle" ColumnName="CodeArticle" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleDetails">
+            <EntityTypeMapping TypeName="TextileModel.ArticleDetails">
+              <MappingFragment StoreEntitySet="ArticleDetails">
+                <ScalarProperty Name="imgURL" ColumnName="imgURL" />
+                <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="Qte" ColumnName="Qte" />
+                <ScalarProperty Name="article" ColumnName="article" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockOuvert">
+            <EntityTypeMapping TypeName="TextileModel.StockOuvert">
+              <MappingFragment StoreEntitySet="StockOuvert">
+                <ScalarProperty Name="Qte" ColumnName="Qte" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockOuvertDetail">
+            <EntityTypeMapping TypeName="TextileModel.StockOuvertDetail">
+              <MappingFragment StoreEntitySet="StockOuvertDetail">
+                <ScalarProperty Name="imgURL" ColumnName="imgURL" />
+                <ScalarProperty Name="articledetail" ColumnName="articledetail" />
+                <ScalarProperty Name="article" ColumnName="article" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="Qte" ColumnName="Qte" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventes">
+            <EntityTypeMapping TypeName="TextileModel.Ventes">
+              <MappingFragment StoreEntitySet="Ventes">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TypePaiement" ColumnName="TypePaiement" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="client" ColumnName="client" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VenteDetails">
+            <EntityTypeMapping TypeName="TextileModel.VenteDetails">
+              <MappingFragment StoreEntitySet="VenteDetails">
+                <ScalarProperty Name="Remise" ColumnName="Remise" />
+                <ScalarProperty Name="PrixUnitaire" ColumnName="PrixUnitaire" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Qte" ColumnName="Qte" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="vente" ColumnName="vente" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Societe">
+            <EntityTypeMapping TypeName="TextileModel.Societe">
+              <MappingFragment StoreEntitySet="Societe">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="NumeroTelephone" ColumnName="NumeroTelephone" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="NomSociete" ColumnName="NomSociete" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paiement">
+            <EntityTypeMapping TypeName="TextileModel.Paiement">
+              <MappingFragment StoreEntitySet="Paiement">
+                <ScalarProperty Name="DateEcheance" ColumnName="DateEcheance" />
+                <ScalarProperty Name="DatePaiement" ColumnName="DatePaiement" />
+                <ScalarProperty Name="TypePaiement" ColumnName="TypePaiement" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+                <ScalarProperty Name="client" ColumnName="client" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockMouvement">
+            <EntityTypeMapping TypeName="TextileModel.StockMouvement">
+              <MappingFragment StoreEntitySet="StockMouvement">
+                <ScalarProperty Name="Facture" ColumnName="Facture" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="Qte" ColumnName="Qte" />
+                <ScalarProperty Name="Mouvement" ColumnName="Mouvement" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TextileModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

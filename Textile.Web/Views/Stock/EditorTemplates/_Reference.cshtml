@@ -1,0 +1,22 @@
+﻿
+@model Textile.DAL.Models.ReferencesModel
+<form id="ParamForm">
+    @Html.HiddenFor(model => model.id)
+    <div class="container-fluid">
+        <br />
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="input-group mb-3">
+               
+                   @Html.TextBoxFor(model => model.Libellé, new { @class = "form-control", @placeholder = "Libellé", @required = true })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-sm btn-success" onclick="AddOrUpdateReference()"><i class="ace-icon fa fa-check"></i> Valider</button>
+        <button type="button" class="btn btn-sm" id="AnnulerP" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Annuler</button>
+    </div>
+</form>
+
+

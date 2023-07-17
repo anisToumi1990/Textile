@@ -1,0 +1,35 @@
+﻿@model Textile.DAL.Models.ArticleDetailsModel
+<form id="ParamForm">
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.article)
+    @Html.HiddenFor(model => model.DateCreation)
+    @Html.HiddenFor(model => model.imgURL)
+    @Html.HiddenFor(model => model.Disponible)
+    <div class="container-fluid">
+        <br />
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-shopping-cart"></i></span>
+                    </div>
+                    @Html.TextBoxFor(model => model.Qte, new { @class = "form-control qte", @placeholder = "Quantité (m)", @required = true, @type = "text", @onkeypress = "return isNumberKey(this, event);"})
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <label class="small mb-1" for="Désignation">Déscription</label>
+                    @Html.TextAreaFor(model => model.Designation, new { @class = "form-control", @placeholder = "Déscription ..." })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-sm btn-success" onclick="AddOrUpdateArticleDetail()"><i class="ace-icon fa fa-check"></i> Valider</button>
+        <button type="button" class="btn btn-sm" id="AnnulerP" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Annuler</button>
+    </div>
+</form>
+
+
+

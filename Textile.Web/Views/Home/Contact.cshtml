@@ -1,0 +1,345 @@
+﻿<style>
+    /* UI Sortable */
+    .ui-sortable .ibox-title {
+        cursor: move;
+    }
+
+    .ui-sortable-placeholder {
+        border: 1px dashed #cecece !important;
+        visibility: visible !important;
+        background: #e7eaec;
+    }
+
+    .ibox.ui-sortable-placeholder {
+        margin: 0px 0px 23px !important;
+    }
+    .ibox-content h1,
+    .ibox-content h2,
+    .ibox-content h3,
+    .ibox-content h4,
+    .ibox-content h5,
+    .ibox-title h1,
+    .ibox-title h2,
+    .ibox-title h3,
+    .ibox-title h4,
+    .ibox-title h5 {
+        margin-top: 5px;
+    }
+    .ibox-content.text-box {
+        padding-bottom: 0px;
+        padding-top: 15px;
+    }
+    .ui-draggable .ibox-title {
+        cursor: move;
+    }
+    .ibox {
+        clear: both;
+        margin-bottom: 25px;
+        margin-top: 0;
+        padding: 0;
+    }
+
+        .ibox.collapsed .ibox-content {
+            display: none;
+        }
+
+        .ibox.collapsed .fa.fa-chevron-up:before {
+            content: "\f078";
+        }
+
+        .ibox.collapsed .fa.fa-chevron-down:before {
+            content: "\f077";
+        }
+
+        .ibox:after,
+        .ibox:before {
+            display: table;
+        }
+
+    .ibox-title {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        background-color: #ffffff;
+        border-color: #e7eaec;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 4px 0px 0;
+        color: inherit;
+        margin-bottom: 0;
+        padding: 14px 15px 7px;
+        min-height: 48px;
+    }
+
+    .ibox-content {
+        background-color: #ffffff;
+        color: inherit;
+        padding: 15px 20px 20px 20px;
+        border-color: #e7eaec;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 0px;
+    }
+    .ibox-content {
+        clear: both;
+    }
+
+    .ibox-heading {
+        background-color: #f3f6fb;
+        border-bottom: none;
+    }
+
+        .ibox-heading h3 {
+            font-weight: 200;
+            font-size: 24px;
+        }
+
+    .ibox-title h5 {
+        display: inline-block;
+        font-size: 14px;
+        margin: 0 0 7px;
+        padding: 0;
+        text-overflow: ellipsis;
+        float: left;
+    }
+
+    .ibox-title .label {
+        float: left;
+        margin-left: 4px;
+    }
+
+    .ibox-tools {
+        display: inline-block;
+        float: right;
+        margin-top: 0;
+        position: relative;
+        padding: 0;
+    }
+
+        .ibox-tools a {
+            cursor: pointer;
+            margin-left: 5px;
+            color: #c4c4c4;
+        }
+
+            .ibox-tools a.btn-primary {
+                color: #fff;
+            }
+
+        .ibox-tools .dropdown-menu > li > a {
+            padding: 4px 10px;
+            font-size: 12px;
+        }
+
+    .ibox .open > .dropdown-menu {
+        left: auto;
+        right: 0;
+    }
+    .label {
+        background-color: #d1dade;
+        color: #5e5e5e;
+        font-family: 'Open Sans';
+        font-size: 10px;
+        font-weight: 600;
+        padding: 3px 8px;
+        text-shadow: none;
+    }
+
+    .badge {
+        background-color: #d1dade;
+        color: #5e5e5e;
+        font-family: 'Open Sans';
+        font-size: 11px;
+        font-weight: 600;
+        padding-bottom: 4px;
+        padding-left: 6px;
+        padding-right: 6px;
+        text-shadow: none;
+    }
+
+    .label-primary,
+    .badge-primary {
+        background-color: #1ab394;
+        color: #FFFFFF;
+    }
+
+    .label-success,
+    .badge-success {
+        background-color: #1c84c6;
+        color: #FFFFFF;
+    }
+
+    .label-warning,
+    .badge-warning {
+        background-color: #f8ac59;
+        color: #FFFFFF;
+    }
+
+    .label-warning-light,
+    .badge-warning-light {
+        background-color: #f8ac59;
+        color: #ffffff;
+    }
+
+    .label-danger,
+    .badge-danger {
+        background-color: #ed5565;
+        color: #FFFFFF;
+    }
+
+    .label-info,
+    .badge-info {
+        background-color: #23c6c8;
+        color: #FFFFFF;
+    }
+
+    .label-inverse,
+    .badge-inverse {
+        background-color: #262626;
+        color: #FFFFFF;
+    }
+
+    .label-white,
+    .badge-white {
+        background-color: #FFFFFF;
+        color: #5E5E5E;
+    }
+
+    .label-white,
+    .badge-disable {
+        background-color: #2A2E36;
+        color: #8B91A0;
+    }
+    .pull-right {
+        margin-left: 10px;
+    }
+    .pull-right {
+        float: left !important;
+    }
+    .no-margins {
+        margin: 0 !important;
+    }
+    .stat-percent {
+        float: right;
+    }
+    .font-bold {
+        font-weight: 600;
+    }
+    /* COLORS */
+    .text-navy {
+        color: #1ab394;
+    }
+
+    .text-primary {
+        color: inherit;
+    }
+
+    .text-success {
+        color: #1c84c6;
+    }
+
+    .text-info {
+        color: #23c6c8;
+    }
+
+    .text-warning {
+        color: #f8ac59;
+    }
+
+    .text-danger {
+        color: #ed5565;
+    }
+
+    .text-muted {
+        color: #888888;
+    }
+
+    .simple_tag {
+        background-color: #f3f3f4;
+        border: 1px solid #e7eaec;
+        border-radius: 2px;
+        color: inherit;
+        font-size: 10px;
+        margin-right: 5px;
+        margin-top: 5px;
+        padding: 5px 12px;
+        display: inline-block;
+    }
+
+    .img-shadow {
+        -webkit-box-shadow: 0px 0px 3px 0px #919191;
+        -moz-box-shadow: 0px 0px 3px 0px #919191;
+        box-shadow: 0px 0px 3px 0px #919191;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span style="float:right !important" class="label label-primary pull-right">Mensuel</span>
+                            <h5>
+                                VENTE
+                            </h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">
+                                @*   @ViewBag.VenteMois*@
+                                0,000
+                            </h1>
+                            @*@if (ViewBag.RapportVenteMois >= 0)
+                    {*@
+                            <div class="stat-percent font-bold text-navy">
+                                @*@ViewBag.RapportVenteMois %*@0,000 %
+                                <i class="fas fa-level-up-alt"></i>
+                            </div>
+                            @* } *@
+                            @*else
+                    {
+                        <div class="stat-percent font-bold text-danger">
+                            @ViewBag.RapportVenteMois % <i class="fa fa-level-down"></i>
+                        </div>
+                    }*@
+                            <small>Totale</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span style="float:right !important" class="label label-info pull-right">Mensuel</span>
+                            <h5>
+                                VENTE
+                            </h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">
+                                @*   @ViewBag.VenteMois*@
+                                0,000
+                            </h1>
+                            @*@if (ViewBag.RapportVenteMois >= 0)
+                    {*@
+                            <div class="stat-percent font-bold text-navy">
+                                @*@ViewBag.RapportVenteMois %*@0,000 %
+                                <i class="fas fa-level-up-alt"></i>
+                            </div>
+                            @* } *@
+                            @*else
+                    {
+                        <div class="stat-percent font-bold text-danger">
+                            @ViewBag.RapportVenteMois % <i class="fa fa-level-down"></i>
+                        </div>
+                    }*@
+                            <small>Totale</small>
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+
+        </div>
+    </div>
+</div>

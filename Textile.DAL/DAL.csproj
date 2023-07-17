@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{145B4727-3976-4A60-8073-6686FE531FBD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArticleDetails.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Articles.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fournisseur.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Amount.cs" />
+    <Compile Include="Models\ArticleDetailsModel.cs" />
+    <Compile Include="Models\ClientModel.cs" />
+    <Compile Include="Models\FactureModel.cs" />
+    <Compile Include="Models\FournisseurModel.cs" />
+    <Compile Include="Models\ArticlesModel.cs" />
+    <Compile Include="Models\PaiementModel.cs" />
+    <Compile Include="Models\QuantiteModel.cs" />
+    <Compile Include="Models\ReferencesModel.cs" />
+    <Compile Include="Models\RolesModel.cs" />
+    <Compile Include="Models\SocieteModel.cs" />
+    <Compile Include="Models\StockModel.cs" />
+    <Compile Include="Models\StockOuvertDetailModel.cs" />
+    <Compile Include="Models\StockOuvertModel.cs" />
+    <Compile Include="Models\TextValueModel.cs" />
+    <Compile Include="Models\StockMouvementModel.cs" />
+    <Compile Include="Models\UserRolesMappingModel.cs" />
+    <Compile Include="Models\UsersModel.cs" />
+    <Compile Include="Models\VenteDetailsModel.cs" />
+    <Compile Include="Models\VentesModel.cs" />
+    <Compile Include="Models\VentesParMoisModel.cs" />
+    <Compile Include="Paiement.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="References.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Societe.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockMouvement.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockOuvert.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockOuvertDetail.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Textile.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Textile.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Textile.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Textile.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Textile.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="UserRolesMapping.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VenteDetails.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ventes.cs">
+      <DependentUpon>Textile.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Textile.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Textile.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="Textile.edmx.diagram">
+      <DependentUpon>Textile.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Textile.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Textile.Context.cs</LastGenOutput>
+      <DependentUpon>Textile.edmx</DependentUpon>
+    </Content>
+    <Content Include="Textile.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Textile.edmx</DependentUpon>
+      <LastGenOutput>Textile.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
